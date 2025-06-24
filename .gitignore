@@ -1,0 +1,25 @@
+# Ambientes Virtuais
+# Nunca adicione a pasta de bibliotecas ao repositório.
+.venv/
+venv/
+
+# Arquivos de Cache e compilados do Python
+# São temporários e gerados automaticamente.
+__pycache__/
+*.pyc
+
+# Arquivos de Segredos e Configuração
+# CRÍTICO: Nunca envie seu TOKEN do Discord para o GitHub!
+config.py
+*.env
+.env
+
+# Arquivos de Sistema Operacional
+# Lixo gerado pelo Windows e macOS.
+.DS_Store
+Thumbs.db
+
+# Arquivos de IDEs e Editores
+# Configurações específicas do seu computador.
+.vscode/
+.idea/
