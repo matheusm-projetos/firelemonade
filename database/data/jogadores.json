@@ -1,0 +1,55 @@
+{
+    "1": {
+    "id": 1,
+    "nome": "Endou Mamoru",
+    "posicao_inicial": "Goleiro",
+    "elemento": "Terra",
+    "atributos": {
+            "kick": 96,
+            "dribbling": 76,
+            "block": 107,
+            "catch": 175,
+            "technique": 133,
+            "speed": 100,
+            "stamina": 128,
+            "lucky": 123
+        },
+    "imagem": "https://i.postimg.cc/KzDdTkJJ/Endou.webp"
+    },
+
+    "2": {
+    "id": 2,
+    "nome": "Gouenji Shuuya",
+    "posicao_inicial": "Atacante",
+    "elemento": "Fogo",
+    "atributos": {
+            "kick": 170,
+            "dribbling": 126,
+            "block": 95,
+            "catch": 83,
+            "technique": 116,
+            "speed": 104,
+            "stamina": 121,
+            "lucky": 90
+        },
+    "imagem": "https://i.postimg.cc/GtMV700D/goenji.webp"
+    },
+
+    "3": {
+    "id": 3,
+    "nome": "Kidou Yuuto",
+    "posicao_inicial": "Meio Campista",
+    "elemento": "Vento",
+    "atributos": {
+            "kick": 128,
+            "dribbling": 165,
+            "block": 109,
+            "catch": 81,
+            "technique": 131,
+            "speed": 107,
+            "stamina": 104,
+            "lucky": 102
+        },
+    "imagem": "https://i.postimg.cc/pV0Stt7h/kidou.webp"
+    }
+}
