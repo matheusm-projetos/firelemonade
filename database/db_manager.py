@@ -35,12 +35,12 @@ class DatabaseManager:
         
     #retorna a lista dos jogadores da base de dados
     def get_jogadores(self):
-        return self._jogadores
+        return self._jogadores_data
     
     def get_usuarios_data(self, user_id):
         return self._usuarios_data.get(str(user_id))
     
-    def create_user(self, user_id, username):
+    def criar_usuario(self, user_id, username):
         user_id_str = str(user_id)
         if user_id_str in self._usuarios_data:
             return False
@@ -58,4 +58,3 @@ class DatabaseManager:
         
         self.save_usuarios_data()
         return True
-            
