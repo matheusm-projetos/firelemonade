@@ -1,5 +1,6 @@
 import json
 import os
+import random
 
 JOGADOR_FILE = os.path.join('database', 'data', 'jogadores.json')
 USUARIOS_FILE = os.path.join('database', 'data', 'usuarios.json')
@@ -37,8 +38,35 @@ class DatabaseManager:
     def get_jogadores(self):
         return self._jogadores_data
     
+    def get_random_jogador_id(self):
+        if not self._jogadores_data:
+            return None
+        return random.choice(list(self._jogadores_data.keys()))
+    
+    def get_jogador_por_id(self, player_id):
+        return self._jogadores_data.get(str(player_id))
+    
     def get_usuarios_data(self, user_id):
         return self._usuarios_data.get(str(user_id))
+    
+    def adicionar_jogador_elenco(self, user_id, player_id):
+        user_id_str = str(user_id)
+        player_id_str = str(player_id)
+        
+        usuario_data = self.get_usuarios_data(user_id_str)
+        
+        if not usuario_data:
+            return
+        
+        elenco_id = f"{player_id_str}_{random.randint(10000, 99999)}"
+        
+        usuario_data["elenco"][elenco_id] = {
+            "id_base": player_id_str,
+            "nivel": 1,
+            "exp": 0
+        }
+        
+        self.save_usuarios_data()
     
     def criar_usuario(self, user_id, username):
         user_id_str = str(user_id)

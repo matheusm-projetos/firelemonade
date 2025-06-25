@@ -1,7 +1,13 @@
 {
     "348902662332481539": {
         "username": "anonymousserval",
-        "elenco": {},
+        "elenco": {
+            "2_16519": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            }
+        },
         "times": {},
         "moedas": {
             "pontos_espirito": 0,
@@ -11,7 +17,13 @@
     },
     "286332049738956801": {
         "username": "gbkuma",
-        "elenco": {},
+        "elenco": {
+            "2_35997": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            }
+        },
         "times": {},
         "moedas": {
             "pontos_espirito": 0,
