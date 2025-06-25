@@ -34,6 +34,46 @@ class PlayerCommands(commands.Cog):
         embed.add_field(name = "Elemento", value = info_jogador['elemento'], inline = True)
         
         await ctx.send(embed = embed)
+        
+    @commands.command(name = "elenco", help = "Mostra todos os jogadores que você recutou")
+    async def mostrar_elenco(self, ctx):
+        user_id = ctx.author.id
+        usuario_data = self.bot.db_manager.get_usuarios_data(user_id)
+        
+        if not usuario_data:
+            await ctx.send(f"Você precisa se registrar primeriro!! Use `fl!registro`")
+            return
+        
+        elenco = usuario_data.get("elenco", {})
+        
+        if not elenco:
+            await ctx.send(f"{ctx.author.mention} seu elenco está vazio! Use `fl!recrutar`!!")
+            return
+        
+        embed = discord.Embed(
+            title = f"Elenco de **{ctx.author.name}**",
+            color = discord.Color.orange()
+        )
+        embed.set_thumbnail(url = ctx.author.avatar.url)
+        
+        lista_jogadores = []
+        
+        for elenco_id, jogador_no_elenco in elenco.items():
+            id_base = jogador_no_elenco.get("id_base")
+            info_base = self.bot.db_manager.get_jogador_por_id(id_base)
+            
+            if info_base:
+                nome_jogador = info_base.get("nome", "Desconhecido")
+                nivel_jogador = jogador_no_elenco.get("nivel", 1)
+                lista_jogadores.append(f"• **{nome_jogador}** - Nível {nivel_jogador}")
+                
+        if not lista_jogadores:
+            await ctx.send("Não foi possível carregar as informações do seu elenco. Tente novamente.")
+            return
+        
+        embed.add_field(name = "Jogadores:", value = "\n".join(lista_jogadores), inline = False)
+        
+        await ctx.send(embed = embed)
 
 async def setup(bot):
     await bot.add_cog(PlayerCommands(bot))

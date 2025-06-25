@@ -50,7 +50,7 @@ class UserCommands(commands.Cog):
         embed.add_field(name = "Relâmpagos Dourados", value = f"{moedas.get('relampagos_dourados', 0)}", inline = True)
         
         num_jogadores = len(usuario_data.get('elenco', {}))
-        embed.add_field(name = "Elenco", value = f"{num_jogadores}", inline = False)
+        embed.add_field(name = "jogadores", value = f"{num_jogadores}", inline = False)
         
         await ctx.send(embed = embed)
         
