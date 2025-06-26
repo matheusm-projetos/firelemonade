@@ -1,5 +1,8 @@
 import discord
 from discord.ext import commands
+from PIL import Image, ImageDraw, ImageFont
+import requests
+from io import BytesIO
 
 class PlayerCommands(commands.Cog):
     def __init__(self, bot):
@@ -74,6 +77,55 @@ class PlayerCommands(commands.Cog):
         embed.add_field(name = "Jogadores:", value = "\n".join(lista_jogadores), inline = False)
         
         await ctx.send(embed = embed)
-
+        
+    @commands.command(name = "jogador", help = "Mostra o card de um jogador específico")
+    async def jogador(self, ctx, *, nome_jogador: str):
+        await ctx.send(f"Buscando informações para **{nome_jogador}**")
+        
+        info_jogador = self.bot.db_manager.get_jogador_por_nome(nome_jogador)
+        
+        if not info_jogador:
+            await ctx.send(f"Não consegui encontrar o jogador ´{nome_jogador}´. Você é burro??")
+            return
+        
+        try:
+            response = requests.get(info_jogador['imagem'])
+            img_jogador = Image.open(BytesIO(response.content)).convert("RGBA")
+            
+            card = Image.new("RGBA", (800, 300), (44, 47, 51, 255))
+            
+            img_jogador = img_jogador.resize((200, 200))
+            card.paste(img_jogador, (50, 50), img_jogador)
+            
+            draw = ImageDraw.Draw(card)
+            
+            '''try:
+                fonte_titulo = ImageFont.truetype("assets/fonts/arial.ttf", 40)
+                fonte_stats = ImageFont.truetype("assets.fonts/arial.ttf", 24)
+            except IOError:
+                fonte_titulo = ImageFont.load_default()
+                fonte_stats = ImageFont.load_default()'''
+                
+            fonte_titulo = ImageFont.load_default()
+            fonte_stats = ImageFont.load_default()
+            
+            draw.text((300, 30), info_jogador['nome'], font=fonte_titulo, fill=(255, 255, 255))
+            draw.text((300, 80), f"Posição: {info_jogador['posicao_inicial']}", font=fonte_stats, fill=(200, 200, 200))
+            draw.text((500, 80), f"Elemento: {info_jogador['elemento']}", font=fonte_stats, fill=(200, 200, 200))
+            
+            pos_y = 130
+            for attr, valor in info_jogador['atributos'].items():
+                draw.text((300, pos_y), f"{attr.capitalize()}: {valor}", font = fonte_stats, fill = (255, 255, 255))
+                pos_y += 30
+                
+            buffer = BytesIO()
+            card.save(buffer, format = 'PNG')
+            buffer.seek(0)
+            
+            await ctx.send(file = discord.File(buffer, filename = F"{nome_jogador.lower().replace(' ', '_')}.png"))
+        except Exception as e:
+            print(f"Erro ao gerar card de jogador: {e}")
+            await ctx.send("Não foi possível gerar o card do jogador")
+            
 async def setup(bot):
     await bot.add_cog(PlayerCommands(bot))

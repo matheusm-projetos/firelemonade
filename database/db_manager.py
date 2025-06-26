@@ -46,6 +46,14 @@ class DatabaseManager:
     def get_jogador_por_id(self, player_id):
         return self._jogadores_data.get(str(player_id))
     
+    def get_jogador_por_nome(self, nome_procurado):
+        nome_lower = nome_procurado.lower()
+        
+        for jogador_id, jogador_info in self._jogadores_data.items():
+            if jogador_info['nome'].lower() == nome_lower:
+                return jogador_info
+        return None
+    
     def get_usuarios_data(self, user_id):
         return self._usuarios_data.get(str(user_id))
     

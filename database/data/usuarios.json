@@ -33,7 +33,13 @@
     },
     "274233294525300740": {
         "username": "aoki_reika",
-        "elenco": {},
+        "elenco": {
+            "3_33927": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            }
+        },
         "times": {},
         "moedas": {
             "pontos_espirito": 0,
@@ -44,6 +50,117 @@
     "667983352116019220": {
         "username": "kiitsun3_3",
         "elenco": {},
+        "times": {},
+        "moedas": {
+            "pontos_espirito": 0,
+            "relampagos_dourados": 0,
+            "medalhas_raimon": 0
+        }
+    },
+    "351090259146309642": {
+        "username": "0fuyu",
+        "elenco": {
+            "2_39479": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "2_67690": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "2_65275": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_45142": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_28729": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_66238": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_87406": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_28067": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_77907": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_49898": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_78219": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_90681": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_19703": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_64903": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "2_19667": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "3_85433": {
+                "id_base": "3",
+                "nivel": 1,
+                "exp": 0
+            },
+            "2_94216": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_33799": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            },
+            "2_35395": {
+                "id_base": "2",
+                "nivel": 1,
+                "exp": 0
+            },
+            "1_74930": {
+                "id_base": "1",
+                "nivel": 1,
+                "exp": 0
+            }
+        },
         "times": {},
         "moedas": {
             "pontos_espirito": 0,
