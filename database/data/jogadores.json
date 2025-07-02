@@ -4,6 +4,8 @@
     "nome": "Endou Mamoru",
     "posicao_inicial": "Goleiro",
     "elemento": "Terra",
+    "raridade:": "SSR",
+    "overall_origem": 121,
     "atributos": {
             "kick": 96,
             "dribbling": 76,
@@ -14,7 +16,8 @@
             "stamina": 128,
             "lucky": 123
         },
-    "imagem": "https://i.postimg.cc/KzDdTkJJ/Endou.webp"
+    "imagem": "https://i.postimg.cc/KzDdTkJJ/Endou.webp",
+    "mixi_max_info": null
     },
 
     "2": {
@@ -22,6 +25,8 @@
     "nome": "Gouenji Shuuya",
     "posicao_inicial": "Atacante",
     "elemento": "Fogo",
+    "raridade": "SSR",
+    "overall_origem": 118,
     "atributos": {
             "kick": 170,
             "dribbling": 126,
@@ -32,7 +37,8 @@
             "stamina": 121,
             "lucky": 90
         },
-    "imagem": "https://i.postimg.cc/GtMV700D/goenji.webp"
+    "imagem": "https://i.postimg.cc/GtMV700D/goenji.webp",
+    "mixi_max_info": null
     },
 
     "3": {
@@ -40,6 +46,8 @@
     "nome": "Kidou Yuuto",
     "posicao_inicial": "Meio Campista",
     "elemento": "Vento",
+    "raridade": "SSR",
+    "overall_origem": 124,
     "atributos": {
             "kick": 128,
             "dribbling": 165,
@@ -50,6 +58,31 @@
             "stamina": 104,
             "lucky": 102
         },
-    "imagem": "https://i.postimg.cc/pV0Stt7h/kidou.webp"
+    "imagem": "https://i.postimg.cc/pV0Stt7h/kidou.webp",
+    "mixi_max_info": null
+    },
+
+    "4": {
+    "id": 4,
+    "nome": "Tenma Mastukaze",
+    "posicao_inicial": "Meio Campista",
+    "elemento": "Vento",
+    "raridade": "SSR",
+    "overall_origem": 121.5,
+    "atributos": {
+            "kick": 121,
+            "dribbling": 170,
+            "block": 107,
+            "catch": 88,
+            "technique": 102,
+            "speed": 114,
+            "stamina": 109,
+            "lucky": 102
+        },
+    "imagem": "https://i.postimg.cc/pV0Stt7h/kidou.webp",
+    "mixi_max_info": {
+        "nome_mixi_max": "Tenma (Mixi Max: Shuu)",
+        "imagem_mixi_max": "https://i.imgur.com/your_placeholder_for_tenma_miximax.png"
+    }
     }
 }

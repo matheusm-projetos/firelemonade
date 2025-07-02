@@ -1,8 +1,12 @@
 import discord
 from discord.ext import commands
+import random
 from PIL import Image, ImageDraw, ImageFont
 import requests
 from io import BytesIO
+
+RARITY_CHANCES = {'Comum': 65, 'Raro': 26, 'SR': 7, 'SSR': 1.8, 'Lendário': 0.2}
+MIXIMAX_CHANCES = {'SR': 0.05, 'SSR': 0.10, 'Lendário': 0.15}
 
 class PlayerCommands(commands.Cog):
     def __init__(self, bot):
@@ -17,26 +21,53 @@ class PlayerCommands(commands.Cog):
             await ctx.send(f"Você precisa se registrar primeiro!! Use `fl!registro`")
             return
         
-        random_jogador_id = self.bot.db_manager.get_random_jogador_id()
+        raridades = list(RARITY_CHANCES.keys())
+        chances = list(RARITY_CHANCES.values())
+        raridade_sorteada = random.choices(raridades, weights = chances, k = 1)
         
-        if not random_jogador_id:
-            await ctx.send("Opa, parece que não há jogadores na base de dados no momento")
+        todos_jogadores = self.bot.db_manager.get_jogadores()
+        pool_de_jogadores = [p for p in todos_jogadores.values() if p.get('raridade') == raridade_sorteada]
+        
+        if not pool_de_jogadores:
+            await ctx.send(f"Parece não há jogadores da raridade '{raridade_sorteada}' no jogo ainda. Tente Novamente")
             return
         
-        info_jogador = self.bot.db_manager.get_jogador_por_id(random_jogador_id)
+        jogador_sorteado_base = random.choice(pool_de_jogadores)
         
-        self.bot.db_manager.adicionar_jogador_elenco(user_id, random_jogador_id)
+        is_mixi_max = False
         
+        chance_mixi_max = MIXIMAX_CHANCES.get(raridade_sorteada, 0)
+        if random.random() < chance_mixi_max and jogador_sorteado_base.get("mixi_max_info"):
+            is_mixi_max = True
+            
+        info_final_jogador = jogador_sorteado_base.copy()
+        
+        if is_mixi_max:
+            info_final_jogador['nome'] = jogador_sorteado_base['mixi_max_info']['nome_mixi_max']
+            info_final_jogador['imagem'] = jogador_sorteado_base['mixi_max_info']['imagem_mixi_max']
+            
+            novos_atributos = {stat: int(valor * 1.20) for stat, valor in info_final_jogador['atributos'].items()}
+            info_final_jogador['atributos'] = novos_atributos
+            
+        self.bot.db_manager.adicionar_jogador_elenco(user_id, str(info_final_jogador['id']), is_mixi_max)
+        
+        cor_embed = discord.Color.green()
+        titulo_embed = "Novo Jogador Recrutado"
+        if is_mixi_max:
+            cor_embed = discord.Color.purple()
+            titulo_embed = "RECRUTAMENTO MIXI MAX!"
+            
         embed = discord.Embed(
-            title = "Novo Jogador Recrutado!",
-            description = f"Olhe, {ctx.author.mention}! **{info_jogador['nome']}** entrou na sua equipe!!",
-            color = discord.Color.green()
+            title=titulo_embed,
+            description=f"Olhe, {ctx.author.mention}! **{info_final_jogador['nome']}** entrou na sua equipe!!",
+            color=cor_embed
         )
-        embed.set_thumbnail(url = info_jogador['imagem'])
-        embed.add_field(name = "Posição", value = info_jogador['posicao_inicial'], inline = True)
-        embed.add_field(name = "Elemento", value = info_jogador['elemento'], inline = True)
+        embed.set_thumbnail(url=info_final_jogador['imagem'])
+        embed.add_field(name="Raridade", value=info_final_jogador['raridade'], inline=True)
+        embed.add_field(name="Posição", value=info_final_jogador['posicao_inicial'], inline=True)
+        embed.add_field(name="Elemento", value=info_final_jogador['elemento'], inline=True)
         
-        await ctx.send(embed = embed)
+        await ctx.send(embed=embed)
         
     @commands.command(name = "elenco", help = "Mostra todos os jogadores que você recutou")
     async def mostrar_elenco(self, ctx):

@@ -57,7 +57,7 @@ class DatabaseManager:
     def get_usuarios_data(self, user_id):
         return self._usuarios_data.get(str(user_id))
     
-    def adicionar_jogador_elenco(self, user_id, player_id):
+    def adicionar_jogador_elenco(self, user_id, player_id, is_mixi_max = False):
         user_id_str = str(user_id)
         player_id_str = str(player_id)
         
@@ -71,7 +71,8 @@ class DatabaseManager:
         usuario_data["elenco"][elenco_id] = {
             "id_base": player_id_str,
             "nivel": 1,
-            "exp": 0
+            "exp": 0,
+            "tier": "Mixi Max" if is_mixi_max else "Comum"
         }
         
         self.save_usuarios_data()
